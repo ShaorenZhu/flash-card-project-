@@ -1,16 +1,15 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/product")
+@app.route("/product", methods = ["GET","POST"])
 def product():
     if request.method == "POST":
         answer = request.form["ans"]
-    else:
-        return render_template("product.html", question = "Test Question", methods = ["POST", "GET"])
+    return render_template("product.html", question = "Test Question")
 
 @app.route("/contribute")
 def contribute():
